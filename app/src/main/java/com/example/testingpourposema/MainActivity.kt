@@ -2,7 +2,6 @@ package com.example.testingpourposema
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -16,10 +15,9 @@ import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
 import com.google.android.material.snackbar.Snackbar
-import java.util.Objects
 
 class MainActivity : AppCompatActivity() {
     private lateinit var b1:Button
@@ -58,11 +56,19 @@ class MainActivity : AppCompatActivity() {
         sw1=findViewById(R.id.sw1)
         sp1=findViewById(R.id.sp1)
         list1=findViewById(R.id.list1)
+        val fstring:String ="this is 1s string"
 
         list1.setOnClickListener {
             val intent = Intent(this,lista::class.java)
             startActivity(intent)
         }
+
+        b6.setOnClickListener {
+            val ins = Intent(this,singup::class.java)
+            startActivity(ins)
+        }
+
+
 
 /////Spinner startt////
         val BestLang = resources.getStringArray(R.array.BestLang)//access the arte Item from string.xml
@@ -84,8 +90,8 @@ class MainActivity : AppCompatActivity() {
                     val te1:String = adapter.getItem(position).toString()
                     Toast.makeText(this@MainActivity, te1, Toast.LENGTH_SHORT).show()
                     /////text/////
-                    val text3: String = parent?.getItemAtPosition(position).toString()
-                    sel.text=text3
+//                    val text3: String = parent?.getItemAtPosition(position).toString()
+//                    sel.text=text3
 
                 }
 
@@ -119,6 +125,8 @@ class MainActivity : AppCompatActivity() {
             load.visibility=View.VISIBLE
         }
 
+
+
         b8.setOnClickListener {
             load.visibility=View.GONE
         }
@@ -137,8 +145,10 @@ class MainActivity : AppCompatActivity() {
 
         b2.setOnClickListener {
             val intent = Intent(this,login::class.java)
+            intent.putExtra(fstring,"This is Login Page")
             startActivity(intent)
         }
+
 
         b3.setOnClickListener {
             val alartcode = AlertDialog.Builder(this)
@@ -152,7 +162,7 @@ class MainActivity : AppCompatActivity() {
                     "            }\n" +
                     "        }")
             alartcode.setPositiveButton("back"){
-                dialog, hich -> dialog.cancel()
+                dialog, which -> dialog.cancel()
             }
             alartcode.show()
         }
